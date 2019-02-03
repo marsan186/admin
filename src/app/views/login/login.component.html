@@ -6,26 +6,26 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
-                <form (ngSubmit)="login(user)" #loginFForm="ngForm">
+                <form (ngSubmit)="login(user)" #loginForm="ngForm">
                   <h1>Login</h1>
                   <p class="text-muted">Sign In to your account</p>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" name="username" [(ngModel)]="user.username" placeholder="Username"
-                      autocomplete="username" required>
+                    <input type="text" class="form-control" name="username" #username="ngModel" [class.is.invalid]="!username.valid && !username.pristine"
+                      [(ngModel)]="user.username" placeholder="Username" autocomplete="username" required>
                   </div>
                   <div class="input-group mb-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
-                    <input type="password" name="password" class="form-control" [(ngModel)]="user.password" placeholder="Password"
-                      autocomplete="current-password" required>
+                    <input type="password" name="password" class="form-control" #password="ngModel" [class.is.invalid]="!password.valid && !password.pristine"
+                      [(ngModel)]="user.password" placeholder="Password" autocomplete="current-password" required>
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button type="submit" class="btn btn-primary px-4">Login</button>
+                      <button type="submit" class="btn btn-primary px-4" [disabled]="!loginForm.form.valid">Login</button>
                     </div>
                     <div class="col-6 text-right">
                       <button type="button" class="btn btn-link px-0">Forgot password?</button>
