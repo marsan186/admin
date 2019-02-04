@@ -15,7 +15,7 @@ $ cd my-project
 $ npm install
 ```
 
-##Check the Barnch
+### Check the Barnch
 
 ``` bash
 git checkout development
