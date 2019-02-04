@@ -15,6 +15,13 @@ $ cd my-project
 $ npm install
 ```
 
+##Check the Barnch
+
+``` bash
+git checkout development
+
+
+
 ## Usage
 
 ``` bash
