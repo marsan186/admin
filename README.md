@@ -6,7 +6,7 @@
 
 ``` bash
 # clone the repo
-$ git clone https://github.com/coreui/coreui-free-angular-admin-template.git my-project
+$ git clone https://github.com/marsan186/admin.git my-project
 
 # go into app's directory
 $ cd my-project
@@ -54,8 +54,6 @@ free-angular-admin-template/
 
 ## Documentation
 
-The documentation for the CoreUI Free Angularp Admin Template is hosted at our website [CoreUI](https://coreui.io/angular/)
-
 ## Contributing
 
 Please read through our [contributing guidelines](https://github.com/coreui/coreui-free-angular-admin-template/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
@@ -79,19 +77,7 @@ See [the Releases section of our project](https://github.com/coreui/coreui-free-
 
 * <https://github.com/xidedix>
 
-## Community
 
-Get updates on CoreUI's development and chat with the project maintainers and community members.
-
-- Follow [@core_ui on Twitter](https://twitter.com/core_ui).
-- Read and subscribe to [CoreUI Blog](https://coreui.ui/blog/).
-
-### Community Projects
-
-Some of projects created by community but not maintained by CoreUI team.
-
-* [NuxtJS + Vue CoreUI](https://github.com/muhibbudins/nuxt-coreui)
-* [Colmena](https://github.com/colmena/colmena)
 
 ## Copyright and license
 
