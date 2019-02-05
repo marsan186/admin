@@ -4,7 +4,7 @@ const path = require("path");
 const app = express();
 const mongoose = require('mongoose');
 const config = require("./config");
-const User = require("./model/user");
+const AdminUser = require("./models/admin");
 mongoose.Promise = global.Promise;
 mongoose.connect(
     config.mongoURL,
@@ -14,10 +14,9 @@ mongoose.connect(
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../dist')));
 
-
 app.post("/register", function (req, res) {
 
-    const newUser = new User({
+    const newUser = new AdminUser({
         name: req.body.name,
         username: req.body.user_name
     });
@@ -31,7 +30,7 @@ app.post("/register", function (req, res) {
 
 app.post("/login", function (req, res) {
 
-    User.findOne({ username: res.body.user_name }).then(loginUser => {
+    AdminUser.findOne({ username: res.body.user_name }).then(loginUser => {
         if (!loginUser) {
             return res.status(401).json("Invalid user name and password");
         }
@@ -39,10 +38,20 @@ app.post("/login", function (req, res) {
         if (!loginUser.validatePassword(req.body.password)) {
             return res.status(401).json("Invalid password");
         }
-        res.send(200).json(rec);
+        res.send(200).json(loginUser);
     })
 
 });
+
+
+app.get("/getusers", function (req, res) {
+    
+        AdminUser.findOne({}).then(rec => {
+            
+            res.send(200).json(rec);
+        })
+    
+    });
 
 
 app.get("*", function (req, res) {
