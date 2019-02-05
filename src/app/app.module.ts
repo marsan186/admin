@@ -57,7 +57,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: User = {
-    username: '',
+    user_name: '',
     password: ''
   };
   constructor(private authService: AuthService, private _router: Router) {
@@ -18,8 +18,12 @@ export class LoginComponent implements OnInit {
 
   }
   login(theUser: User) {
-    this.authService.login(theUser);
-    this._router.navigate(['/dashboard']);
+    this.authService.login(theUser).subscribe(data => {
+      console.log(data);
+      this._router.navigate(['/dashboard']);
+      localStorage.setItem('user', JSON.stringify(data));
+    });
+
   }
 
 }

@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-
+import { UserService } from '../../services/user.service';
 @Component({
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-
+  users = [];
   radioModel: string = 'Month';
 
+  constructor(private _user: UserService) { }
   // lineChart1
   public lineChart1Data: Array<any> = [
     {
@@ -242,7 +243,7 @@ export class DashboardComponent implements OnInit {
       mode: 'index',
       position: 'nearest',
       callbacks: {
-        labelColor: function(tooltipItem, chart) {
+        labelColor: function (tooltipItem, chart) {
           return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
         }
       }
@@ -255,7 +256,7 @@ export class DashboardComponent implements OnInit {
           drawOnChartArea: false,
         },
         ticks: {
-          callback: function(value: any) {
+          callback: function (value: any) {
             return value.charAt(0);
           }
         }
@@ -385,5 +386,6 @@ export class DashboardComponent implements OnInit {
       this.mainChartData2.push(this.random(80, 100));
       this.mainChartData3.push(65);
     }
+    this._user.getUser().subscribe(res => console.log(res));
   }
 }

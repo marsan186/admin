@@ -30,7 +30,7 @@ app.post("/register", function (req, res) {
 
 app.post("/login", function (req, res) {
 
-    AdminUser.findOne({ username: res.body.user_name }).then(loginUser => {
+    AdminUser.findOne({ username: req.body.user_name }).then(loginUser => {
         if (!loginUser) {
             return res.status(401).json("Invalid user name and password");
         }
@@ -38,20 +38,20 @@ app.post("/login", function (req, res) {
         if (!loginUser.validatePassword(req.body.password)) {
             return res.status(401).json("Invalid password");
         }
-        res.send(200).json(loginUser);
+
+        res.status(200).json(loginUser);
     })
 
 });
 
 
 app.get("/getusers", function (req, res) {
-    
-        AdminUser.findOne({}).then(rec => {
-            
-            res.send(200).json(rec);
-        })
-    
-    });
+
+    AdminUser.find().then(adminUser => {
+        res.status(200).json(adminUser);
+    })
+
+});
 
 
 app.get("*", function (req, res) {
