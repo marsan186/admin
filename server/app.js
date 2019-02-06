@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 const config = require("./config");
 const AdminUser = require("./models/admin");
+const authenticate = require("./authenticate");
 mongoose.Promise = global.Promise;
 mongoose.connect(
     config.mongoURL,
@@ -39,13 +40,16 @@ app.post("/login", function (req, res) {
             return res.status(401).json("Invalid password");
         }
 
-        res.status(200).json(loginUser);
+        // const withTokem ={...loginUser}
+        const withTokem = { username: loginUser.username, _id: loginUser._id }
+        withTokem.token = loginUser.generateJWT();
+        res.status(200).json(withTokem);
     })
 
 });
 
 
-app.get("/getusers", function (req, res) {
+app.get("/getusers",authenticate, function (req, res) {
 
     AdminUser.find().then(adminUser => {
         res.status(200).json(adminUser);

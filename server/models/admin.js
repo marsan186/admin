@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const bcrpt = require('bcrypt-nodejs');
 var uniqueValidator = require('mongoose-unique-validator');
-
+const jwt = require('jsonwebtoken');
+const config = require("../config");
 
 const AdminUser = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
@@ -18,6 +19,18 @@ AdminUser.methods.generateHash = function (password) {
 AdminUser.methods.validatePassword = function (password) {
     return bcrpt.compareSync(password, this.password);
 }
+
+AdminUser.methods.generateJWT = function () {
+    const today = new Date();
+    const expirationDate = new Date(today);
+    expirationDate.setDate(today.getDate() + 60);
+    return jwt.sign({
+        username:this.username,
+        id:this._id,
+        exp:parseInt(expirationDate.getTime()/1000,10),
+    },config.secret)
+}
+
 AdminUser.plugin(uniqueValidator);
 
 module.exports = mongoose.model('AdminUser', AdminUser)
