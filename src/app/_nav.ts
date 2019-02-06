@@ -27,7 +27,7 @@ export const navItems: NavData[] = [
   },
   {
     name: 'Vendor List',
-    url: '/theme/colors',
+    url: '/vendor/list',
     icon: 'icon-drop'
   },
 
