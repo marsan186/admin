@@ -49,7 +49,7 @@
     "express": "^4.16.4",
     "flag-icon-css": "^3.2.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^1.9.1",
+    "jquery": ">=3.0.0",
     "jsonwebtoken": "^8.4.0",
     "moment": "^2.23.0",
     "mongoose": "^5.4.9",
